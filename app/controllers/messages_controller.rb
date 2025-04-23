@@ -5,12 +5,12 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = Message.new(message_params)
-    if @message.save
-      send_sms_via_twilio(@message)
-      render json: @message, status: :created
+    message = Message.new(message_params)
+    if message.save
+      send_sms_via_twilio(message)
+      render json: message, status: :created
     else
-      render json: { errors: @message.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: message.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -20,15 +20,15 @@ class MessagesController < ApplicationController
     params.require(:message).permit(:to, :body)
   end
 
-  def send_sms_via_twilio
+  def send_sms_via_twilio(message)
     @client = Twilio::REST::Client.new(ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"])
 
     twilio_message = @client.messages.create(
-      from: ENV["TWILIO_PHONE_NUMBER"],
-      to: @message.to,
-      body: @message.body,
+      from: ENV["TWILIO_FROM_PHONE_NUMBER"],
+      to: ENV["TWILIO_TO_PHONE_NUMBER"],
+      body: message.body,
     )
 
-    @message.update(twilio_sid: twilio_message.sid, status: "sent")
+    message.update(twilio_sid: twilio_message.sid, status: "sent")
   end
 end
