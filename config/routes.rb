@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   # root "posts#index"
   #
   resources :messages, only: [:index, :create]
+
+  post "/twilio/status", to: "twilio#status"
 end
