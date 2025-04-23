@@ -25,10 +25,11 @@ class MessagesController < ApplicationController
 
     twilio_message = @client.messages.create(
       from: ENV["TWILIO_FROM_PHONE_NUMBER"],
-      to: ENV["TWILIO_TO_PHONE_NUMBER"],
+      to: message.to || ENV["TWILIO_TO_PHONE_NUMBER"],
       body: message.body,
+      status_callback: "#{ENV["BASE_URL"]}/twilio/status",
     )
 
-    message.update(twilio_sid: twilio_message.sid, status: "sent")
+    message.update(twilio_sid: twilio_message.sid, status: twilio_message.status)
   end
 end
