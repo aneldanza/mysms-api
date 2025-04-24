@@ -48,3 +48,4 @@ end
 gem "dotenv-rails"
 gem "mongoid", "~> 7.5"
 gem "twilio-ruby"
+gem "devise"
