@@ -8,7 +8,7 @@ class User
   field :username, type: String
 
   ## Devise Fields
-  field :email, type: String, default: "", null: false
+  field :email, type: String, default: ""
   field :encrypted_password, type: String, default: ""
 
   ## Recoverable
