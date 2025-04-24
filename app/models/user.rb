@@ -26,4 +26,6 @@ class User
   validates :email, presence: true, uniqueness: true
 
   index({ jti: 1 }, { unique: true })
+
+  has_many :messages, dependent: :destroy
 end
