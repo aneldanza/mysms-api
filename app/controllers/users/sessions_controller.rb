@@ -20,6 +20,11 @@ class Users::SessionsController < Devise::SessionsController
     end
   end
 
+  # ⛔ Prevent Devise from accessing the session
+  def verify_signed_out_user
+    # do nothing
+  end
+
   private
 
   def respond_with(resource, _opts = {})
