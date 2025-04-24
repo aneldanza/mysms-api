@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :messages, only: [:index, :create]
 
   post "/twilio/status", to: "twilio#status"
+  get "me", to: "users#me"
 
   devise_for :users,
              controllers: {
