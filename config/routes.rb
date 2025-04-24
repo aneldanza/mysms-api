@@ -11,4 +11,10 @@ Rails.application.routes.draw do
   resources :messages, only: [:index, :create]
 
   post "/twilio/status", to: "twilio#status"
+
+  devise_for :users,
+             controllers: {
+               registrations: "users/registrations",
+               sessions: "users/sessions",
+             }
 end
