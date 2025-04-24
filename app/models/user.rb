@@ -5,7 +5,7 @@ class User
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :jwt_authenticatable, jwt_revocation_strategy: Devise::JWT::RevocationStrategies::JTIMatcher
+         :jwt_authenticatable, jwt_revocation_strategy: self
 
   ## Custom Fields
   field :username, type: String
