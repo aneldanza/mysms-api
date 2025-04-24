@@ -28,4 +28,17 @@ class User
   index({ jti: 1 }, { unique: true })
 
   has_many :messages, dependent: :destroy
+
+  def self.primary_key
+    :_id
+  end
+
+  def self.generate_jti
+    SecureRandom.uuid
+  end
+
+  def self.revoke_jwt(payload, user)
+    user.set(jti: generate_jti)
+  end
+  
 end
