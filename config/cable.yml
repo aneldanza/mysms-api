@@ -9,5 +9,3 @@ production:
   adapter: redis
   url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
   channel_prefix: mysms_api_production
-  allowed_request_origins:
-    - https://mysms-frontend-git-main-aneldanzas-projects.vercel.app
