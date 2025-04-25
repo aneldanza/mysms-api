@@ -50,3 +50,4 @@ gem "mongoid", "~> 7.5"
 gem "twilio-ruby"
 gem "devise"
 gem "devise-jwt"
+gem 'sprockets-rails', '~> 3.4'

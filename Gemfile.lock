@@ -227,6 +227,14 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     ruby2_keywords (0.0.5)
+    sprockets (4.2.2)
+      concurrent-ruby (~> 1.0)
+      logger
+      rack (>= 2.2.4, < 4)
+    sprockets-rails (3.5.2)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      sprockets (>= 3.0.0)
     sqlite3 (1.7.3-aarch64-linux)
     sqlite3 (1.7.3-arm-linux)
     sqlite3 (1.7.3-arm64-darwin)
@@ -281,6 +289,7 @@ DEPENDENCIES
   rack-cors
   rails (= 7.0.8)
   redis (>= 4.0.1)
+  sprockets-rails (~> 3.4)
   sqlite3 (~> 1.4)
   twilio-ruby
   tzinfo-data
