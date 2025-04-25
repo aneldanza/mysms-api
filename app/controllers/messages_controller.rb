@@ -1,11 +1,13 @@
 class MessagesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    messages = Message.order_by(created_at: :desc)
+    messages = Message.where(user_id: current_user.id).order_by(created_at: :desc)
     render json: messages, status: :ok
   end
 
   def create
-    message = Message.new(message_params)
+    message = current_user.messages.build(message_params)
     if message.save
       send_sms_via_twilio(message)
       render json: message, status: :created
