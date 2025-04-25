@@ -3,10 +3,6 @@ require 'rails_helper'
 RSpec.describe "Users::SessionsController", type: :request do
   let(:user) { create(:user) }
 
-  before do
-    puts "User created: #{user.inspect}" # Debugging: Print the user details
-  end
-
 
   let(:auth_headers) do
     token = Warden::JWTAuth::UserEncoder.new.call(user, :user, nil).first
@@ -42,8 +38,8 @@ RSpec.describe "Users::SessionsController", type: :request do
 
   describe "POST /users/sign_in" do
     context "when the credentials are valid" do
-      it "logs in the user and returns a JWT", skip: "Debugging later" do
-        post "/users/sign_in", params: { user: { email: user.email, password: user.password } }, headers: { "Content-Type" => "application/json", "Accept" => "application/json" }
+      it "logs in the user and returns a JWT" do
+        post "/users/sign_in", params: { user: { email: user.email, password: user.password } }.to_json, headers: { "Content-Type" => "application/json", "Accept" => "application/json" }
 
         expect(response).to have_http_status(:ok)
         json = JSON.parse(response.body)
