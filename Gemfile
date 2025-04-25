@@ -40,11 +40,12 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "faker"
   gem "debug", platforms: %i[mri windows]
+  gem 'database_cleaner-mongoid'
 end
 
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
+  gem "spring"
 end
 
 gem "dotenv-rails"
