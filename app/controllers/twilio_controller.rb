@@ -1,5 +1,5 @@
 class TwilioController < ApplicationController
-  protect_from_forgery with: null_session
+
 
   def status
     sid = params[:MessageSid]
