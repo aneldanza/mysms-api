@@ -3,6 +3,7 @@ class MessagesController < ApplicationController
 
   def index
     messages = Message.where(user_id: current_user.id).order_by(created_at: :desc)
+  
     render json: messages, status: :ok
   end
 
