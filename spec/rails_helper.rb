@@ -66,6 +66,8 @@ RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.strategy = :deletion
     DatabaseCleaner.clean_with(:deletion)
+
+    raise "Tests are running on the production database!" if Rails.env.production?
   end
 
   config.around(:each) do |example|
